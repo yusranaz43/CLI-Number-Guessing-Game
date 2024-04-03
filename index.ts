@@ -1,6 +1,7 @@
-#! usr/bin/env node
+#!/usr/bin/env node
 
 import inquirer from "inquirer";
+import chalk from "chalk";
 
 // 1) Computer will generate random number
 
@@ -8,19 +9,21 @@ import inquirer from "inquirer";
 
 // 3) Compare user input with computer generated number and show result
 
+
+console.log(chalk.bold.bgWhiteBright.hex('#FF69B4')("Welcome to the Number Guessing Game!"));
 const randomNumber = Math.floor(Math.random() * 10 + 1);
 
 const answer = await inquirer.prompt([
   {
-    message: "Please guess a number between (1-10):",
+    message: chalk.yellowBright("Please guess a number between (1-10):"),
     type: "number",
     name: "userGuessedNumber",
   },
 ]);
 
 if(answer.userGuessedNumber == randomNumber){
-    console.log("Congratulations! You successfully guessed the correct number.");
+    console.log(chalk.green("Congratulations! You successfully guessed the correct number."));
 }
 else{
-    console.log("Oops, that's not it");
+    console.log(chalk.red("Oops, that's not it"));
 }
